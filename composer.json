@@ -1,5 +1,5 @@
 {
-    "name": "lchogan/programming-test",
+    "name": "leaftrade/programming-test",
     "description": "LeafTrade Programming Test",
     "keywords": ["programming", "test"],
     "license": "MIT",
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Vault\\": "src/"
+            "LeafTrade\\": "src/"
         }
     },
     "autoload-dev": {
