@@ -36,4 +36,25 @@ class ArrayUtils
         sort($sortedArray);
         return $sortedArray;
     }
+
+    /*
+     * Takes two arrays and returns the array of elements that are in the first but not the second
+     *
+     * @param (arr1) An array
+     * @param (arr2) An array
+     * @return (arrDiff) The resulting array containing all elements in arr1 that are not in arr2
+     */
+    public static function getDiff(array $arr1, array $arr2)
+    {
+        // Filter out the elements of $arr1 that are not in $arr2
+        $arrDiff = array_filter($arr1, function ($val) use ($arr2) {
+            if (in_array($val, $arr2)) {
+                return false;
+            }
+            return true;
+        });
+
+        // Resets the array's index
+        return array_values($arrDiff);
+    }
 }
