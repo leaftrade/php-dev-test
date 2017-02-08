@@ -21,4 +21,19 @@ class ArrayUtils
         $arrOfWords = explode(' ', $strippedString);
         return array_reverse($arrOfWords);
     }
+
+    /*
+     * Takes an array of strings, parses them as floats or integers, then sorts them in ascending order
+     *
+     * @param (arr) The array of numbers as strings in any order
+     * @return (arrayOfNumbers) The resulting ordered array of numbers
+     */
+    public static function parseAndSort(array $arr)
+    {
+        $sortedArray = array_map(function ($string) {
+            return ((intval($string) == $string)) ? intval($string) : floatval($string);
+        }, $arr);
+        sort($sortedArray);
+        return $sortedArray;
+    }
 }

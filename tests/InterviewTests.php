@@ -27,7 +27,7 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     {
         $data = ["200", "450", "2.5", "1", "505.5", "2"];
 
-        // Code here
+        $data = ArrayTools::parseAndSort($data);
 
         $this->assertTrue(1 === $data[0]);
         $this->assertTrue(2 === $data[1]);
