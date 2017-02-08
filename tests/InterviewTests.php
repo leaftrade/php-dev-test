@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Instructions:
- *
- * Create a class in the LeafTrade namespace and rewrite each test to make the assertions pass.
- * NOTE: You can use any third party packages you deem necessary to complete the tests. 
- */
+use Carbon\Carbon;
 
 class InterviewTests extends PHPUnit\Framework\TestCase {
 
@@ -76,7 +71,10 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $time1 = "2016-06-05T12:00:00";
         $time2 = "2016-06-05T15:00:00";
 
-        // Code here
+        $dt1 = Carbon::parse($time1);
+        $dt2 = Carbon::parse($time2);
+        $seconds = $dt1->diffInSeconds($dt2);
+        $timeDiff = Carbon::now()->subSeconds($seconds)->diffForHumans();
 
         $this->assertEquals("3 hours ago", $timeDiff);
     }
