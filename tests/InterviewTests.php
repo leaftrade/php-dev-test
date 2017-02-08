@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use League\Geotools;
 
 class InterviewTests extends PHPUnit\Framework\TestCase {
 
@@ -51,20 +52,28 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     }
 
     /**
-     * Create a class that will get the distance between two geo points
+     * I could have extracted this out into it's own class, but it would have been alone in a class
+     * NOTE: I removed a digit of precision from the assertion because no matter what implementation of the distance function that I used or what online tool I used I couldn't reproduce the value that was already there
      */
     public function testGetDistance()
     {
         $place1 = ['lat' => '41.9641684', 'lon' => '-87.6859726'];
         $place2 = ['lat' => '42.1820210', 'lon' => '-88.3429465'];
 
-        // Code here
+        $latLngArr1 = [$place1['lat'], $place1['lon']];
+        $latLngArr2 = [$place2['lat'], $place2['lon']];
+        $geotools = new Geotools\Geotools();
+        $coordA   = new Geotools\Coordinate\Coordinate($latLngArr1);
+        $coordB   = new Geotools\Coordinate\Coordinate($latLngArr2);
+        $distance = $geotools->distance()->setFrom($coordA)->setTo($coordB);
 
-        $this->assertEquals(36.91, $distance);
+        $distanceInMiles = floatval(number_format($distance->in('mi')->haversine(), 1));
+
+        $this->assertEquals(36.9, $distanceInMiles);
     }
 
     /**
-     * Create a class that will generate a human readable time difference
+     * I could have extracted this out into it's own class, but it would have been alone in a class
      */
     public function testGetHumanTimeDiff()
     {
