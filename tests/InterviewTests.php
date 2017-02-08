@@ -1,5 +1,8 @@
 <?php
 
+require_once '/home/vagrant/source/php-dev-test/src/LeafTrade/ArrayTools.php';
+
+use LeafTrade\ArrayTools;
 use Carbon\Carbon;
 use League\Geotools;
 
@@ -12,7 +15,7 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     {
         $data = "I want this job.";
 
-        // Code here
+        $data = ArrayTools::reverseArray($data);
 
         $this->assertEquals(['job', 'this', 'want', 'I'], $data);
     }
