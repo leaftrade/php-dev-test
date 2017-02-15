@@ -7,8 +7,7 @@ use Location\Distance\Vincenty;
 
 class App
 {
-
-    CONST METERS_TO_MILES = 0.0006202; //0.000621371;
+    const METERS_TO_MILES = 0.0006202; //0.000621371;
 
     public function __construct()
     {
@@ -26,8 +25,8 @@ class App
     {
         $ints = [];
 
-        foreach ($array as $value){
-            if (is_numeric( $value ) && floor( $value ) != $value){
+        foreach ($array as $value) {
+            if (is_numeric($value) && floor($value) != $value) {
                 $ints[] = floatval($value);
             } else {
                 $ints[] = intval($value);
@@ -46,7 +45,6 @@ class App
 
     public function calculateDistance($to, $from)
     {
-
         $coordinate1 = new Coordinate($to['lat'], $to['lon']);
         $coordinate2 = new Coordinate($from['lat'], $from['lon']);
 
@@ -58,7 +56,7 @@ class App
 
     public function convertMetersToMiles($meters, $decimals = 2)
     {
-        $miles = $meters * self::METERS_Tsrc    _MILES;
+        $miles = $meters * self::METERS_TO_MILES;
         return number_format($miles, $decimals, '.', '');
     }
 
