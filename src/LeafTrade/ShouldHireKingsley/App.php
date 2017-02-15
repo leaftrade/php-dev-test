@@ -12,7 +12,8 @@ class App
     /**
      * Remove non-alpha characters, split into array
      * and reverse the order
-     * @param  string $string
+     *
+     * @param  string  $string
      * @return array
      */
     public function splitAndReverseString($string)
@@ -26,7 +27,8 @@ class App
     /**
      * Cast array of numbers into integer/double
      * and sort lowest to highest
-     * @param  array $array
+     *
+     * @param  array  $array
      * @return array
      */
     public function sortNumbericArray($array)
@@ -48,8 +50,9 @@ class App
 
     /**
      * Get differences from one array to another array
-     * @param  array $needles
-     * @param  array $haystack
+     *
+     * @param  array  $needles
+     * @param  array  $haystack
      * @return array
      */
     public function getArrayDifferences($needles, $haystack)
@@ -59,8 +62,9 @@ class App
 
     /**
      * Calculate distance between two geo locations
-     * @param  array $to
-     * @param  array $from
+     *
+     * @param  array  $to
+     * @param  array  $from
      * @return double
      */
     public function calculateDistance($to, $from)
@@ -75,8 +79,9 @@ class App
 
     /**
      * Convert meters to miles
+     *
      * @param  int  $meters
-     * @param  integer $decimals decimals of precision
+     * @param  integer  $decimals decimals of precision
      * @return string
      */
     public function convertMetersToMiles($meters, $decimals = 2)
@@ -89,8 +94,9 @@ class App
     /**
      * Calculate the human difference between two given
      * dates/times/timestamps
-     * @param  string $time1
-     * @param  string $time2
+     *
+     * @param  string  $time1
+     * @param  string  $time2
      * @return string
      */
     public function calculateHumanTimeDiff($time1, $time2)
