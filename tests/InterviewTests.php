@@ -18,8 +18,8 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     {
         $data = "I want this job.";
 
-        $helper = new App();
-        $data = $helper->splitAndReverseString($data);
+        $app = new App();
+        $data = $app->splitAndReverseString($data);
 
         $this->assertEquals(['job', 'this', 'want', 'I'], $data);
     }
@@ -31,8 +31,8 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     {
         $data = ["200", "450", "2.5", "1", "505.5", "2"];
 
-        $helper = new App();
-        $data = $helper->sortNumbericArray($data);
+        $app = new App();
+        $data = $app->sortNumbericArray($data);
 
         $this->assertTrue(1 === $data[0]);
         $this->assertTrue(2 === $data[1]);
@@ -50,12 +50,12 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $data1 = [1, 2, 3, 4, 5, 6, 7];
         $data2 = [2, 4, 5, 7, 8, 9, 10];
 
-        $helper = new App();
-        $data = $helper->getArrayDifferences($data2, $data1);
+        $app = new App();
+        $data = $app->getArrayDifferences($data2, $data1);
 
         $this->assertEquals([8, 9, 10], $data);
 
-        $data = $helper->getArrayDifferences($data1, $data2);
+        $data = $app->getArrayDifferences($data1, $data2);
 
         $this->assertEquals([1, 3, 6], $data);
     }
@@ -68,9 +68,9 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $place1 = ['lat' => '41.9641684', 'lon' => '-87.6859726'];
         $place2 = ['lat' => '42.1820210', 'lon' => '-88.3429465'];
 
-        $helper = new App();
-        $distance = $helper->calculateDistance($place1, $place2);
-        $distance = $helper->convertMetersToMiles($distance);
+        $app = new App();
+        $distance = $app->calculateDistance($place1, $place2);
+        $distance = $app->convertMetersToMiles($distance);
 
         $this->assertEquals(36.91, $distance);
     }
@@ -83,8 +83,8 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $time1 = "2016-06-05T12:00:00";
         $time2 = "2016-06-05T15:00:00";
 
-        $helper = new App();
-        $timeDiff = $helper->calculateHumanTimeDiff($time1, $time2);
+        $app = new App();
+        $timeDiff = $app->calculateHumanTimeDiff($time1, $time2);
 
         $this->assertEquals("3 hours ago", $timeDiff);
     }

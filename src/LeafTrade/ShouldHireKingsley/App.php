@@ -7,12 +7,14 @@ use Location\Distance\Vincenty;
 
 class App
 {
-    const METERS_TO_MILES = 0.0006202; //0.000621371;
+    const METERS = 0.0006202; // mile
 
-    public function __construct()
-    {
-    }
-
+    /**
+     * Remove non-alpha characters, split into array
+     * and reverse the order
+     * @param  string $string
+     * @return array
+     */
     public function splitAndReverseString($string)
     {
         $string = preg_replace("/[^A-Za-z0-9 ]/", '', $string);
@@ -21,28 +23,46 @@ class App
         return array_reverse($words);
     }
 
+    /**
+     * Cast array of numbers into integer/double
+     * and sort lowest to highest
+     * @param  array $array
+     * @return array
+     */
     public function sortNumbericArray($array)
     {
-        $ints = [];
+        $numbers = [];
 
         foreach ($array as $value) {
             if (is_numeric($value) && floor($value) != $value) {
-                $ints[] = floatval($value);
+                $numbers[] = floatval($value);
             } else {
-                $ints[] = intval($value);
+                $numbers[] = intval($value);
             }
         }
 
-        sort($ints);
+        sort($numbers);
 
-        return $ints;
+        return $numbers;
     }
 
+    /**
+     * Get differences from one array to another array
+     * @param  array $needles
+     * @param  array $haystack
+     * @return array
+     */
     public function getArrayDifferences($needles, $haystack)
     {
         return array_merge(array_diff($needles, $haystack));
     }
 
+    /**
+     * Calculate distance between two geo locations
+     * @param  array $to
+     * @param  array $from
+     * @return double
+     */
     public function calculateDistance($to, $from)
     {
         $coordinate1 = new Coordinate($to['lat'], $to['lon']);
@@ -53,13 +73,26 @@ class App
         return $calculator->getDistance($coordinate1, $coordinate2);
     }
 
-
+    /**
+     * Convert meters to miles
+     * @param  int  $meters
+     * @param  integer $decimals decimals of precision
+     * @return string
+     */
     public function convertMetersToMiles($meters, $decimals = 2)
     {
-        $miles = $meters * self::METERS_TO_MILES;
-        return number_format($miles, $decimals, '.', '');
+        $meters *= self::METERS;
+
+        return number_format($meters, $decimals, '.', '');
     }
 
+    /**
+     * Calculate the human difference between two given
+     * dates/times/timestamps
+     * @param  string $time1
+     * @param  string $time2
+     * @return string
+     */
     public function calculateHumanTimeDiff($time1, $time2)
     {
         $time1 = Carbon::parse($time1);
