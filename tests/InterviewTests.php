@@ -1,10 +1,12 @@
 <?php
 
+use LeafTrade\ShouldHireKingsley\App;
+
 /**
  * Instructions:
  *
  * Create a class in the LeafTrade namespace and rewrite each test to make the assertions pass.
- * NOTE: You can use any third party packages you deem necessary to complete the tests. 
+ * NOTE: You can use any third party packages you deem necessary to complete the tests.
  */
 
 class InterviewTests extends PHPUnit\Framework\TestCase {
@@ -16,7 +18,8 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     {
         $data = "I want this job.";
 
-        // Code here
+        $app = new App();
+        $data = $app->splitAndReverseString($data);
 
         $this->assertEquals(['job', 'this', 'want', 'I'], $data);
     }
@@ -28,7 +31,8 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
     {
         $data = ["200", "450", "2.5", "1", "505.5", "2"];
 
-        // Code here
+        $app = new App();
+        $data = $app->sortNumbericArray($data);
 
         $this->assertTrue(1 === $data[0]);
         $this->assertTrue(2 === $data[1]);
@@ -46,11 +50,12 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $data1 = [1, 2, 3, 4, 5, 6, 7];
         $data2 = [2, 4, 5, 7, 8, 9, 10];
 
-        // Code here
+        $app = new App();
+        $data = $app->getArrayDifferences($data2, $data1);
 
         $this->assertEquals([8, 9, 10], $data);
 
-        // Code here
+        $data = $app->getArrayDifferences($data1, $data2);
 
         $this->assertEquals([1, 3, 6], $data);
     }
@@ -63,7 +68,9 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $place1 = ['lat' => '41.9641684', 'lon' => '-87.6859726'];
         $place2 = ['lat' => '42.1820210', 'lon' => '-88.3429465'];
 
-        // Code here
+        $app = new App();
+        $distance = $app->calculateDistance($place1, $place2);
+        $distance = $app->convertMetersToMiles($distance);
 
         $this->assertEquals(36.91, $distance);
     }
@@ -76,9 +83,9 @@ class InterviewTests extends PHPUnit\Framework\TestCase {
         $time1 = "2016-06-05T12:00:00";
         $time2 = "2016-06-05T15:00:00";
 
-        // Code here
+        $app = new App();
+        $timeDiff = $app->calculateHumanTimeDiff($time1, $time2);
 
         $this->assertEquals("3 hours ago", $timeDiff);
     }
-
 }
